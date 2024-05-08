@@ -64,4 +64,11 @@ function timeoutUser(userId, guildId, adminRoleId, durationInMinutes) {
 
 // Log in to Discord with your bot token
 client.login(token);
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+client.on('guildMemberAdd', member => {
+    member.guild.systemChannel.send(`Welcome ${member}! Hope you use Arch Linux by the way.`);
+});
+
+
 
