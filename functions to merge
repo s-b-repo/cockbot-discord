@@ -17,8 +17,7 @@ bot.run('YOUR_DISCORD_TOKEN')
 
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-// Discord bot function to kick, ban, or timeout users
+// Discord bot function to kick, ban, or timeout users (Only accessible to admins)
 
 // Import necessary Discord.js library
 const Discord = require('discord.js');
@@ -27,29 +26,42 @@ const client = new Discord.Client();
 // Define your Discord bot token
 const token = 'YOUR_DISCORD_BOT_TOKEN_HERE';
 
-// Function to kick a user
-function kickUser(userId, guildId) {
+// Function to kick a user (Only accessible to admins)
+function kickUser(userId, guildId, adminRoleId) {
     const guild = client.guilds.cache.get(guildId);
     const member = guild.members.cache.get(userId);
     
-    member.kick();
+    if (member.roles.cache.has(adminRoleId)) {
+        member.kick();
+    } else {
+        console.log('User does not have admin privileges.');
+    }
 }
 
-// Function to ban a user
-function banUser(userId, guildId) {
+// Function to ban a user (Only accessible to admins)
+function banUser(userId, guildId, adminRoleId) {
     const guild = client.guilds.cache.get(guildId);
     const member = guild.members.cache.get(userId);
     
-    member.ban();
+    if (member.roles.cache.has(adminRoleId)) {
+        member.ban();
+    } else {
+        console.log('User does not have admin privileges.');
+    }
 }
 
-// Function to timeout a user
-function timeoutUser(userId, guildId, durationInMinutes) {
+// Function to timeout a user (Only accessible to admins)
+function timeoutUser(userId, guildId, adminRoleId, durationInMinutes) {
     const guild = client.guilds.cache.get(guildId);
     const member = guild.members.cache.get(userId);
     
-    member.timeout(durationInMinutes, 'Timeout reason');
+    if (member.roles.cache.has(adminRoleId)) {
+        member.timeout(durationInMinutes, 'Timeout reason');
+    } else {
+        console.log('User does not have admin privileges.');
+    }
 }
 
 // Log in to Discord with your bot token
 client.login(token);
+
