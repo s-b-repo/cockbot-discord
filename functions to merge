@@ -16,5 +16,40 @@ async def search_linux_command(ctx, command):
 bot.run('YOUR_DISCORD_TOKEN')
 
 
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
+// Discord bot function to kick, ban, or timeout users
 
+// Import necessary Discord.js library
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
+// Define your Discord bot token
+const token = 'YOUR_DISCORD_BOT_TOKEN_HERE';
+
+// Function to kick a user
+function kickUser(userId, guildId) {
+    const guild = client.guilds.cache.get(guildId);
+    const member = guild.members.cache.get(userId);
+    
+    member.kick();
+}
+
+// Function to ban a user
+function banUser(userId, guildId) {
+    const guild = client.guilds.cache.get(guildId);
+    const member = guild.members.cache.get(userId);
+    
+    member.ban();
+}
+
+// Function to timeout a user
+function timeoutUser(userId, guildId, durationInMinutes) {
+    const guild = client.guilds.cache.get(guildId);
+    const member = guild.members.cache.get(userId);
+    
+    member.timeout(durationInMinutes, 'Timeout reason');
+}
+
+// Log in to Discord with your bot token
+client.login(token);
