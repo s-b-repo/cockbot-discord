@@ -71,4 +71,21 @@ client.on('guildMemberAdd', member => {
 });
 
 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+const { MessageActionRow, MessageButton } = require('discord.js');
+
+client.on('message', async message => {
+    if (message.content === '!verify') {
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setLabel('Verify')
+                    .setStyle('LINK')
+                    .setURL('https://www.yourverificationwebsite.com')
+            );
+
+        await message.channel.send({ content: 'Click the button below to verify:', components: [row] });
+    }
+});
 
