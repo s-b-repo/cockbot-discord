@@ -88,4 +88,26 @@ client.on('message', async message => {
         await message.channel.send({ content: 'Click the button below to verify:', components: [row] });
     }
 });
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
+import discord
+import asyncio
+import random
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    print('Bot is ready')
+
+@client.event
+async def mention_random_user():
+    while True:
+        await asyncio.sleep(3600)  # 1 hour
+        guild = client.guilds[0]
+        members = guild.members
+        random_member = random.choice(members)
+        await random_member.send('help me')
+
+client.loop.create_task(mention_random_user())
+client.run('your_bot_token_here')
