@@ -111,3 +111,38 @@ async def mention_random_user():
 
 client.loop.create_task(mention_random_user())
 client.run('your_bot_token_here')
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+@bot.event
+async def on_ready():
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    print('------')
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    if message.content.lower() == "debian":
+        counter = 0
+        async for hist in message.channel.history(limit=50):
+            if hist.author == message.author and hist.content.lower() == "debian":
+                counter += 1
+                if counter >= 10:
+                    await message.channel.send("Eww Debian")
+                    break
+            else:
+                break
+
+    await bot.process_commands(message)
+
+bot.run('YOUR_BOT_TOKEN')
